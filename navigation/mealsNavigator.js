@@ -7,6 +7,7 @@ import { Ionicons } from '@expo/vector-icons'
 import CategoriesScreen from '../screens/categoriesScreen'
 import CategoryMealsScreen from '../screens/categoryMealScreen'
 import MealDetailScreen from '../screens/mealDetailScreen'
+
 import FavoritesScreen from '../screens/favoritesScreen'
 import colors from '../constants/colors'
 
@@ -51,6 +52,25 @@ function MealsStackNavigator({ props, route }) {
   )
 }
 
+function Favorite({ props, route }) {
+  return (
+    <Stack.Navigator
+      screenOptions={() => ({
+        headerStyle: { backgroundColor: '#E0FFF9' },
+        headerTintColor: '#005CFF',
+      })}
+    >
+      <Stack.Screen
+        name="Favorites"
+        component={FavoritesScreen}
+        options={() => ({ title: 'My Favorites' })}
+      />
+      <Stack.Screen name="CategoryMeals" component={CategoryMealsScreen} />
+      <Stack.Screen name="MealDetail" component={MealDetailScreen} />
+    </Stack.Navigator>
+  )
+}
+
 const Tab = createBottomTabNavigator()
 
 export default function MealsNavigator() {
@@ -74,11 +94,12 @@ export default function MealsNavigator() {
             ) : (
               <Ionicons name="restaurant-outline" color={'#000'} size={25} />
             ),
+          headerShown: false,
         }}
       />
       <Tab.Screen
-        name="Favorites"
-        component={FavoritesScreen}
+        name="FavoritesScreen"
+        component={Favorite}
         options={{
           tabBarLabel: () => {
             return null
@@ -89,6 +110,8 @@ export default function MealsNavigator() {
             ) : (
               <Ionicons name="star-outline" color={'#000'} size={25} />
             ),
+
+          headerShown: false,
         }}
       />
     </Tab.Navigator>
