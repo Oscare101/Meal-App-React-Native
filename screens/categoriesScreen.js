@@ -29,12 +29,14 @@ export default function CategoriesScreen({ props, navigation }) {
   }
 
   return (
-    <FlatList
-      data={CATEGORIES}
-      keyExtractor={(item) => item.id}
-      renderItem={renderGridItem}
-      numColumns={2}
-    />
+    <View style={{ backgroundColor: '#F5FFFD' }}>
+      <FlatList
+        data={CATEGORIES}
+        keyExtractor={(item) => item.id}
+        renderItem={renderGridItem}
+        numColumns={2}
+      />
+    </View>
   )
 }
 
